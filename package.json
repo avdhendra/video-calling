@@ -36,6 +36,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/yargs": "^17.0.33",
     "sass": "^1.89.2",
     "typescript": "^5"
   }
