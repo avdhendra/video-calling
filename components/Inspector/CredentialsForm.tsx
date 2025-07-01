@@ -117,19 +117,20 @@ export function parseConnectionString(connectionString: string): Credentials {
   // callType:callId@apiKey:userToken
   // callId@apiKey:userToken (default call type)
   const connectionStringRegex =
-    /^((?<callType>[\w-]+):)?(?<callId>[\w-]+)@(?<apiKey>[a-z0-9]+):(?<userToken>[\w-.]+)$/i;
+    /^(([\w-]+):)?([\w-]+)@([a-z0-9]+):([\w-.]+)$/i;
   const matches = connectionString.match(connectionStringRegex);
 
-  if (!matches || !matches.groups) {
+  if (!matches) {
     throw new Error('Cannot parse connection string');
   }
 
+  // matches: [full, optCallTypeWithColon, callType, callId, apiKey, userToken]
   return {
-    callType: matches.groups['callType'] ?? 'default',
-    callId: matches.groups['callId'],
-    apiKey: matches.groups['apiKey'],
-    userId: parseUserIdFromToken(matches.groups['userToken']),
-    userToken: matches.groups['userToken'],
+    callType: matches[2] ?? 'default',
+    callId: matches[3],
+    apiKey: matches[4],
+    userId: parseUserIdFromToken(matches[5]),
+    userToken: matches[5],
   };
 }
 
