@@ -21,6 +21,7 @@
     "lucide-react": "^0.525.0",
     "mobile-device-detect": "^0.4.3",
     "next": "15.3.4",
+    "next-auth": "^4.24.11",
     "qrcode.react": "^4.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
