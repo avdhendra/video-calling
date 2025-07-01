@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 
 import { PlusCircle, User2Icon } from "lucide-react";
-import { Card } from "../ui/card";
 import { useRouter } from "next/navigation";
 type Props = {};
 
