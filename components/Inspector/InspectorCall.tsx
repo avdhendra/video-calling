@@ -9,15 +9,22 @@ import clsx from 'clsx';
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import { useAppEnvironment } from '../../context/AppEnvironmentContext';
 import { inspectorUserId, meetingId } from '../../lib/idGenerators';
-import type {
-  CreateJwtTokenRequest,
-  CreateJwtTokenResponse,
-} from '../../pages/api/auth/create-token';
+
 import { CallingState } from './CallingState';
 import { copyReport } from './copyReport';
 import { CredentialsForm, parseConnectionString } from './CredentialsForm';
 import { Credentials } from './types';
 import { getConnectionString } from '../../lib/connectionString';
+
+declare global {
+  interface Window {
+    _inspector?: {
+      client?: StreamVideoClient;
+      call?: Call;
+      [key: string]: any;
+    };
+  }
+}
 
 export function InspectorCall(props: {
   autoJoinDemoCall?: boolean;
@@ -238,6 +245,7 @@ function useInspectorCall() {
       );
       appendLog('User connected');
       setClient(_client);
+      window._inspector = window._inspector ?? {};
       window._inspector.client = _client;
       return _client;
     } catch (err) {
@@ -256,6 +264,7 @@ function useInspectorCall() {
       await _call.join({ create: true });
       appendLog('Call joined');
       setCall(_call);
+      window._inspector = window._inspector ?? {};
       window._inspector.call = _call;
       return _client;
     } catch (err) {
@@ -273,7 +282,9 @@ function useInspectorCall() {
         appendLog(`Leaving call ${call.cid}`);
         await call.leave();
         setCall(undefined);
-        delete window._inspector.call;
+        if (window._inspector) {
+          delete window._inspector.call;
+        }
       } catch (err) {
         appendLog(`Could not leave call ${call.cid}`);
         throw err;
@@ -286,7 +297,9 @@ function useInspectorCall() {
         await client.disconnectUser();
         appendLog('Disconnected from call');
         setClient(undefined);
-        delete window._inspector.client;
+        if (window._inspector) {
+          delete window._inspector.client;
+        }
       } catch (err) {
         appendLog('User disconnected');
         throw err;
@@ -315,10 +328,10 @@ async function getDemoCredentials(environment: string): Promise<Credentials> {
     user_id: inspectorUserId(),
     environment,
     exp: String(4 * 60 * 60), // 4 hours
-  } satisfies CreateJwtTokenRequest);
+  } );
 
   const res = await fetch(`${basePath}/api/auth/create-token?${params}`);
-  const credentials = (await res.json()) as CreateJwtTokenResponse;
+  const credentials = (await res.json()) ;
   return {
     apiKey: credentials.apiKey,
     userId: credentials.userId,
