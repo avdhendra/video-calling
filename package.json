@@ -27,6 +27,7 @@
     "react-dom": "^19.0.0",
     "react-form": "^4.0.1",
     "react-hot-toast": "^2.5.2",
+    "starwars-names": "^1.6.0",
     "stream-chat": "^9.10.0",
     "uuid": "^11.1.0",
     "uuid4": "^2.0.3",
@@ -36,6 +37,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/starwars-names": "^1.6.2",
     "@types/yargs": "^17.0.33",
     "sass": "^1.89.2",
     "typescript": "^5"
