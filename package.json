@@ -29,6 +29,7 @@
     "react-hot-toast": "^2.5.2",
     "starwars-names": "^1.6.0",
     "stream-chat": "^9.10.0",
+    "stream-chat-react": "^13.2.1",
     "swr": "^2.3.3",
     "uuid": "^11.1.0",
     "uuid4": "^2.0.3",
