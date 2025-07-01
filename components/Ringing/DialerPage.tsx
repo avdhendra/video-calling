@@ -21,7 +21,7 @@ import { useSettings } from '../../context/SettingsContext';
 import { getClient } from '../../helpers/client';
 import { ServerSideCredentialsProps } from '../../lib/getServerSideCredentialsProps';
 import { meetingId } from '../../lib/idGenerators';
-import appTranslations from '../../translations';
+
 import { DefaultAppHeader } from '../DefaultAppHeader';
 import { DialingCallNotification } from './DialingCallNotification';
 
@@ -168,7 +168,7 @@ export const DialerPage = ({
   return (
     <StreamVideo
       client={videoClient}
-      translationsOverrides={appTranslations}
+      
       language={language}
       fallbackLanguage={fallbackLanguage}
     >
