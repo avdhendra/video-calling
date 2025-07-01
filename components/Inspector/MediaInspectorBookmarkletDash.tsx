@@ -29,6 +29,12 @@ type MediaInspectorRecord = readonly [
   err: Error,
 ];
 
+declare global {
+  interface Window {
+    _inspectMedia?: () => any;
+  }
+}
+
 function mediaInspectorBookmarklet() {
   if ('__inspectMedia' in window) {
     console.log('[media inspector] Already installed');
