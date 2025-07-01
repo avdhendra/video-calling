@@ -15,6 +15,7 @@ if (!config['pronto']) {
 }
 
 export async function GET(req: Request) {
+  console.log("create-token called");
   const url = new URL(req.url);
   const userId = url.searchParams.get("user_id");
   const apiKeyFromRequest = url.searchParams.get("api_key") || "";

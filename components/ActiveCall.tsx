@@ -58,6 +58,8 @@ import { StepNames, useTourContext } from '../context/TourContext';
 import { useNotificationSounds } from '../hooks/useNotificationSounds';
 import { usePipWindow } from '../hooks/usePipWindow';
 import { StagePip } from './StagePip';
+import { ChatWrapper } from './ChatWrapper';
+import { ChatUI } from './ChatUI';
 
 export type ActiveCallProps = {
   chatClient?: StreamChat | null;
@@ -199,7 +201,7 @@ export const ActiveCall = (props: ActiveCallProps) => {
                   </div>
                 )}
 
-                {/* {showChat && (
+                {showChat && (
                   <ChatWrapper chatClient={chatClient}>
                     <div className="str-video__chat">
                       <ChatUI
@@ -216,7 +218,7 @@ export const ActiveCall = (props: ActiveCallProps) => {
                       />
                     </div>
                   </ChatWrapper>
-                )} */}
+                )}
 
                 {showStats && <CallStatsSidebar />}
                 {isPronto && showClosedCaptions && <ClosedCaptionsSidebar />}

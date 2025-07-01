@@ -46,7 +46,12 @@ export const createTokenProvider =
       exp: String(4 * 60 * 60), // 4 hours
     });
 
-    const res = await fetch(`${basePath}/api/auth/create-token?${params}`);
-    const json = await ((await res.json()));
+    const res = await fetch(`/api/auth/create-token?${params}`,{
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const json = await (( res.json()));
     return json.token;
   };

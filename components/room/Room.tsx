@@ -56,6 +56,7 @@ const CallRoom = (props: ServerSideCredentialsProps) => {
   const [client, setClient] = useState<StreamVideoClient>();
   useEffect(() => {
     const _client = getClient({ apiKey, user, userToken }, environment);
+    console.log("client", _client);
     setClient(_client);
     window.client = _client;
 
